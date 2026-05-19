@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <script>
+  <script>
   // 1. Service Worker Kaydı
   if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
@@ -12,14 +12,13 @@
     });
   }
 
-  // 2. Global Hesap Makinesi Buton Titreşim Çözümü
-  document.addEventListener('click', (event) => {
-    // Ekranda tıklanan eleman bir "button" ise VEYA bir butonun içindeki simgeyse
+  // 2. Anında Titreşim (Haptic Feedback) Çözümü
+  // 'click' yerine 'pointerdown' kullanıyoruz ki parmak ekrana değer değmez titresin
+  document.addEventListener('pointerdown', (event) => {
     const button = event.target.closest('button');
     
     if (button && 'vibrate' in navigator) {
-      // 40 milisaniye boyunca hafifçe titret
-      navigator.vibrate(40);
+      navigator.vibrate(40); // 40ms titreşim
     }
   });
 </script>
